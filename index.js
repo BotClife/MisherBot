@@ -36,7 +36,7 @@ bot.on("message", message => {
     }
     if(message.content.startsWith('mb!equipe')) {
         if(comando === 'equipe'){
-            message.channel.send('**Dono**: <@412656276166672385> \n **Programador**: <@364241967388950531>');
+            message.channel.send('**Dono**: <@412656276166672385> \n**Programador**: <@364241967388950531>');
         }
     }
     
