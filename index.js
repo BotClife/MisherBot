@@ -40,7 +40,15 @@ bot.on("message", message => {
     if(message.content.startsWith('mb!anuncio')) {
         if(comando === 'anuncio'){
             let AnuncioCargo = message.member.roles.find('name', 'PermAnuncio');
-            if(!AnuncioCargo) return message.reply('Você precisa ter a permissão especifica para utilizar esse comando!');
+            if(message.author.id === '412656276166672385') {
+                return;
+            } else {
+                if(message.author.id === '364241967388950531') {
+                    return
+                } else {
+                    if(!AnuncioCargo) return message.reply('Você precisa ter a permissão especifica para utilizar esse comando!');
+                }
+            }
             if(!msgs[0]) return message.reply('Você precisa adicionar o conteudo do Anuncio!');
             if(!msgs[1]) {
                 let AnuncioEmbed0 = new Discord.RichEmbed()
@@ -133,7 +141,15 @@ bot.on("message", message => {
         if(comando === 'avisar'){
             
             let APerm = message.member.roles.find('name', 'PermAvisar');
-            if(!APerm) return message.reply('Você precisa de uma permissão especifica para utlizar esse comando!');
+            if(message.author.id === '412656276166672385') {
+                return;
+            } else {
+                if(message.author.id === '364241967388950531') {
+                    return
+                } else {
+                    if(!APerm) return message.reply('Você precisa de uma permissão especifica para utlizar esse comando!');
+                }
+            }
             if(!msgs[0]) return message.reply('Adicione o conteudo do Aviso!');
             let AAviso = msgs.join(" ").slice(22);
             let AIcon = message.author.displayAvatarURL
@@ -315,9 +331,18 @@ bot.on("message", message => {
             //ob!expulsar @carinha reação
             let kIcon = message.author.displayAvatarURL
             let kUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(msgs[0]));
+            let ExpulsarCargo = message.member.roles.find('name', 'PermExpulsar');
+            if(message.author.id === '412656276166672385') {
+                return;
+            } else {
+                if(message.author.id === '364241967388950531') {
+                    return
+                } else {
+                    if(!ExpulsarCargo) return message.reply('Você precisa ter a permissão especifica para utilizar esse comando!');
+                }
+            }
             if(!kUser) return message.reply("Não foi possivel encontrar um usuario!");
             let kReason = msgs.join(" ").slice(22);
-            if(!message.member.hasPermission("KICK_MEMBERS")) return message.reply("Você precisa da permissão de Expulsar, para fazer isso!");
             if(kUser.isOwner) return message.reply("Você não pode expulsar essa pessoa!");
             if(kUser.id === "364241967388950531") return message.reply("Você não pode expulsar essa pessoa!");
             if(kUser.id === "412656276166672385") return message.reply("Você não pode expulsar essa pessoa!");
@@ -347,7 +372,19 @@ bot.on("message", message => {
         }
     }
 
-
+    if(message.content.startsWith('mb!equipe')) {
+        if(comando === 'equipe') {
+            
+            message.delete()
+            let EquipeEmbed = new Discord.RichEmbed()
+            .setTitle("**EQUIPE**)
+            .setColor('#90ff00')
+            .addField('**Dono**: <@412656276166672385>', '**Programador**: <@364241967388950531>');
+            
+            message.reply(EquipeEmbed);
+            
+        }
+    }
 
     if(message.content.startsWith('mb!banir')) {
         if(comando === "banir"){
@@ -355,12 +392,21 @@ bot.on("message", message => {
             //mb!banir @carinha reação
             let bIcon = message.author.displayAvatarURL
             let bUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(msgs[0]));
+            let BanirCargo = message.member.roles.find('name', 'PermBanir');
+            if(message.author.id === '412656276166672385') {
+                return;
+            } else {
+                if(message.author.id === '364241967388950531') {
+                    return;
+                } else {
+                    if(!BanirCargo) return message.reply('Você precisa ter a permissão especifica para utilizar esse comando!');
+                }
+            }
             if(!bUser) return message.reply("Não foi possivel encontrar um usuario!");
             let bReason = msgs.join(" ").slice(22);
-            if(!message.member.hasPermission("KICK_MEMBERS")) return message.reply("Você precisa da permissão de Expulsar, para fazer isso!");
-            if(bUser.isOwner) return message.reply("Você não pode expulsar essa pessoa!");
-            if(bUser.id === "364241967388950531") return message.reply("Você não pode expulsar essa pessoa!");
-            if(bUser.id === "412656276166672385") return message.reply("Você não pode expulsar essa pessoa!");
+            if(bUser.isOwner) return message.reply("Você não pode banir essa pessoa!");
+            if(bUser.id === "364241967388950531") return message.reply("Você não pode banir essa pessoa!");
+            if(bUser.id === "412656276166672385") return message.reply("Você não pode banir essa pessoa!");
 
             let banEmbed = new Discord.RichEmbed()
             .setTitle("**-->> Punição <<--**")
@@ -397,7 +443,8 @@ bot.on("message", message => {
             .setThumbnail(AjudaImagem)
             .addField('**' + prefix + 'anuncio (conteudo)**:', 'Um comando para anunciar e votar em **Sim** ou **Não** !')
             .addField('**' + prefix + 'avisar (aviso)**:', 'Um comando para notificar os membros de seu servidor')
-            .addField('**' + prefix + 'banir (membro (motivo)**:', 'Um comando bem poderoso para barrar membros de seu servidor!')
+            .addField('**' + prefix + 'banir (membro) (motivo)**:', 'Um comando bem poderoso para barrar membros de seu servidor!')
+            .addField('**' + prefix + 'equipe**:', 'Um comando para mostrar a minha equipe!')
             .addField('**' + prefix + 'expulsar (membro) (motivo)**: ', 'Um comando administrativo, para expulsar algum membro de seu servidor!')
             .addField('**' + prefix + 'ping**:', 'Seu ping');
 
