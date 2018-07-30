@@ -34,8 +34,12 @@ bot.on("message", message => {
             message.reply('Pong!');
         }
     }
-
-
+    if(message.content.startsWith('mb!equipe')) {
+        if(comando === 'equipe'){
+            message.reply('**Dono**: <@412656276166672385> \n **Programador**: <@364241967388950531>');
+        }
+    }
+    
 
     if(message.content.startsWith('mb!anuncio')) {
         if(comando === 'anuncio'){
