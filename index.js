@@ -10,9 +10,8 @@ bot.on("ready", () => {
 });
 
 
-bot.login(process.env.BOT_TOKEN);
+bot.login(config.token);
 
-const commands = require('./commands.json');
 
 bot.on('guildMemberAdd', member => {
     member.guild.channels.get('472909089203027978').send('Bem-Vindo, ' + member.user + ' ao nosso servidor :-) :tada: !');
@@ -30,10 +29,6 @@ bot.on("message", message => {
     if(message.author.bot) return;
     if(message.channel.type === 'dm') return message.reply('Você não pode usar comandos aqui!');
 
-    responseObject = commands
-    if(responseObject[message.content]){
-        message.channel.send(responseObject[message.content]);
-    }
     if(message.content.startsWith('mb!ping')) {
         if(comando === 'ping'){
             message.reply('Pong!');
