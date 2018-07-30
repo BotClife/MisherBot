@@ -375,9 +375,10 @@ bot.on("message", message => {
     if(message.content.startsWith('mb!equipe')) {
         if(comando === 'equipe') {
             
-            message.delete()
+            message.delete();
             let EquipeEmbed = new Discord.RichEmbed()
             .setTitle("**EQUIPE**)
+            .setDescription('**Misher Bot:**', '⠀')
             .setColor('#90ff00')
             .addField('**Dono**: <@412656276166672385>', '**Programador**: <@364241967388950531>');
             
