@@ -336,15 +336,11 @@ bot.on("message", message => {
             let kIcon = message.author.displayAvatarURL
             let kUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(msgs[0]));
             let ExpulsarCargo = message.member.roles.find('name', 'PermExpulsar');
-            if(message.author.id === '412656276166672385') {
-                return;
-            } else {
-                if(message.author.id === '364241967388950531') {
-                    return
-                } else {
+            if(!message.author.id === '412656276166672385') {
+                if(!message.author.id === '364241967388950531') {
                     if(!ExpulsarCargo) return message.reply('Você precisa ter a permissão especifica para utilizar esse comando!');
                 }
-            }
+            } 
             if(!kUser) return message.reply("Não foi possivel encontrar um usuario!");
             let kReason = msgs.join(" ").slice(22);
             if(kUser.isOwner) return message.reply("Você não pode expulsar essa pessoa!");
