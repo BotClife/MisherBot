@@ -44,15 +44,11 @@ bot.on("message", message => {
     if(message.content.startsWith('mb!anuncio')) {
         if(comando === 'anuncio'){
             let AnuncioCargo = message.member.roles.find('name', 'PermAnuncio');
-            if(message.author.id === '412656276166672385') {
-                return;
-            } else {
-                if(message.author.id === '364241967388950531') {
-                    return
-                } else {
+            if(!message.author.id === '412656276166672385') {
+                if(!message.author.id === '364241967388950531') {
                     if(!AnuncioCargo) return message.reply('Você precisa ter a permissão especifica para utilizar esse comando!');
                 }
-            }
+            } 
             if(!msgs[0]) return message.reply('Você precisa adicionar o conteudo do Anuncio!');
             if(!msgs[1]) {
                 let AnuncioEmbed0 = new Discord.RichEmbed()
@@ -145,15 +141,11 @@ bot.on("message", message => {
         if(comando === 'avisar'){
             
             let APerm = message.member.roles.find('name', 'PermAvisar');
-            if(message.author.id === '412656276166672385') {
-                return;
-            } else {
-                if(message.author.id === '364241967388950531') {
-                    return
-                } else {
-                    if(!APerm) return message.reply('Você precisa de uma permissão especifica para utlizar esse comando!');
+            if(!message.author.id === '412656276166672385') {
+                if(!message.author.id === '364241967388950531') {
+                    if(!APerm) return message.reply('Você precisa ter a permissão especifica para utilizar esse comando!');
                 }
-            }
+            } 
             if(!msgs[0]) return message.reply('Adicione o conteudo do Aviso!');
             let AAviso = msgs.join(" ").slice(22);
             let AIcon = message.author.displayAvatarURL
@@ -380,15 +372,11 @@ bot.on("message", message => {
             let bIcon = message.author.displayAvatarURL
             let bUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(msgs[0]));
             let BanirCargo = message.member.roles.find('name', 'PermBanir');
-            if(message.author.id === '412656276166672385') {
-                return;
-            } else {
-                if(message.author.id === '364241967388950531') {
-                    return;
-                } else {
+            if(!message.author.id === '412656276166672385') {
+                if(!message.author.id === '364241967388950531') {
                     if(!BanirCargo) return message.reply('Você precisa ter a permissão especifica para utilizar esse comando!');
                 }
-            }
+            } 
             if(!bUser) return message.reply("Não foi possivel encontrar um usuario!");
             let bReason = msgs.join(" ").slice(22);
             if(bUser.isOwner) return message.reply("Você não pode banir essa pessoa!");
