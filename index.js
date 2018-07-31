@@ -10,16 +10,20 @@ bot.on("ready", () => {
 });
 
 
-bot.login(process.env.BOT_TOKEN);
+bot.login(config.token);
 
 
 bot.on('guildMemberAdd', member => {
-    member.guild.channels.get('472909089203027978').send('Bem-Vindo, ' + member.user + ' ao nosso servidor :-) :tada: !');
-    member.send('Obrigado por entrar!');
+    if(member.guild.id === '472904826204979200') {
+        member.guild.channels.get('472909089203027978').send('Bem-Vindo, ' + member.user + ' ao nosso servidor :-) :tada: !');
+        member.send('Obrigado por entrar!');
+    }
 })
 bot.on('guildMemberRemove', member => {
-    member.guild.channels.get('472909089203027978').send('Adeus, ' + member.user.username + '!');
-})
+    if(member.guild.id === '472904826204979200') {
+        member.guild.channels.get('472909089203027978').send('Adeus, ' + member.user.username + '!');
+    }
+});
 
 
 bot.on("message", message => {
@@ -32,6 +36,14 @@ bot.on("message", message => {
     if(message.content.startsWith('mb!ping')) {
         if(comando === 'ping'){
             message.reply('Pong!');
+        }
+    }
+    if(message.content.startsWith('mb!nick')) {
+        if(comando === 'nick') {
+            if(!msgs[0]) return message.reply('Digite seu novo nome!');
+            if(message.guild.owner === message.author.username) return message.reply('Desculpa, mas eu ainda não posso trocar seu nome :)!');
+            message.member.setNickname(msgs[0]);
+            message.reply('Nick mudado com sucesso!');
         }
     }
     if(message.content.startsWith('mb!equipe')) {
@@ -421,6 +433,7 @@ bot.on("message", message => {
             .addField('**' + prefix + 'banir (membro) (motivo)**:', 'Um comando bem poderoso para barrar membros de seu servidor!')
             .addField('**' + prefix + 'equipe**:', 'Um comando para mostrar a minha equipe!')
             .addField('**' + prefix + 'expulsar (membro) (motivo)**: ', 'Um comando administrativo, para expulsar algum membro de seu servidor!')
+            .addField('**' + prefix + 'nick**:', 'Mude seu Nickname no servidor atual!')
             .addField('**' + prefix + 'ping**:', 'Seu ping');
 
             message.reply('Enviarei ajuda no seu Privado! \:star2:');
